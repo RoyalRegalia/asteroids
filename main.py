@@ -1,6 +1,8 @@
 import pygame
 from constants import *
 from player import Player
+from asteroid import Asteroid
+from asteroidfields import AsteroidField
 
 def main():
     pygame.init()
@@ -10,9 +12,13 @@ def main():
     
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group() 
-    
-    Player.containers = (updatable, drawable) #After changing a static field like containers, make sure to create all Player objects after the change.
+    asteroids = pygame.sprite.Group()
 
+    Player.containers = (updatable, drawable) #After changing a static field like containers, make sure to create all Player objects after the change.
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = updatable
+
+    asteroid_field = AsteroidField()
     player = Player(SCREEN_WIDTH/2,SCREEN_HEIGHT/2) #2 Assign into a variable
     
 
